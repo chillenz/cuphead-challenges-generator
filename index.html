@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuphead Challenges</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="bgcontainer">
+        <img src="mughead/background.png" id="bg">
+    </div>
+    <img src="setting.png" id="settingbtn" onclick="opensetting()">
+    <div id="outermenu">
+        <div id="realmenu">
+            <div id="bossinfo">
+                <h1>bossnamems</h1>
+                <div id="bosslogo">
+                    <img id="bossimg" src="mughead/rumor.png" alt="Boss Logo">
+                </div>
+                <h2 id="mode">mode</h2>
+            </div>
+            <div id="btncontainer">
+                <div id="randombtn">RANDOMISE</div>
+            </div>
+            <div id="loadoutinfo">
+                <div id="shot1con" class="ltext">
+                    <h2 class="front">SHOT 1</h2>
+                    <div class="dots"></div>
+                    <h2 class="back" id="shot1">shotnaem</h2>
+                </div>
+                <div id="shot2con" class="ltext">
+                    <h2 class="front">SHOT 2</h2>
+                    <div class="dots"></div>
+                    <h2 class="back" id="shot2">shotnaem</h2>
+                </div>
+                <div id="supercon" class="ltext">
+                    <h2 class="front">SUPER</h2>
+                    <div class="dots"></div>
+                    <h2 class="back" id="super">superman</h2>
+                </div>
+                <div id="charmcon" class="ltext">
+                    <h2 class="front">CHARM</h2>
+                    <div class="dots"></div>
+                    <h2 class="back" id="charm">rizz</h2>
+                </div>
+            </div>
+
+            <div id="challengecon">
+                <h2 id="challengetitle">CHALLENGE</h2>
+                <h2 id="challengedesc">No ex, No super, No shooting, No jumping, No dashing, Blindfolded, No arm, On samsung fridge</h2>
+            </div>
+        </div>
+
+        <div id="settingmenu">
+            <h1>SETTINGS</h1>
+            <div id="settingcontainer">
+                <div id="bossislecon" class="settext">
+                    <h2 class="settitle">Boss's Isles</h2>
+                    <div id="isletick" class="tickcon">
+                        <div class="tickrow">
+                            <div id="isle1" class="tick active"></div>
+                            <h2>Isle 1</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="isle2" class="tick active"></div>
+                            <h2>Isle 2</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="isle3" class="tick active"></div>
+                            <h2>Isle 3</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="isle4" class="tick active"></div>
+                            <h2>Isle 4</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="isle5" class="tick active"></div>
+                            <h2>Inkwell Hell</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bosstypecon" class="settext">
+                    <h2 class="settitle">Boss Type</h2>
+                    <div id="typetick" class="tickcon">
+                        <div class="tickrow">
+                            <div id="typeground" class="tick active"></div>
+                            <h2>Ground</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="typeaerial" class="tick active"></div>
+                            <h2>Aerial</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="challengediffcon" class="settext">
+                    <h2 class="settitle">Challenge Difficulty</h2>
+                    <div id="difftick" class="tickcon">
+                        <div class="tickrow">
+                            <div id="diffeasy" class="tick active"></div>
+                            <h2>Easy</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="diffmedium" class="tick active"></div>
+                            <h2>Medium</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="diffhard" class="tick active"></div>
+                            <h2>Hard</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="weaponcon" class="settext">
+                    <h2 class="settitle">Weapon</h2>
+                    <div id="weapontick" class="tickcon">
+                        <div class="tickrow">
+                            <div id="weaponmain" class="tick active"></div>
+                            <h2>Main</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="weapondlc" class="tick active"></div>
+                            <h2>DLC</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="charmfiltercon" class="settext">
+                    <h2 class="settitle">Charm</h2>
+                    <div id="charmfiltertick" class="tickcon">
+                        <div class="tickrow">
+                            <div id="charmmain" class="tick active"></div>
+                            <h2>Main</h2>
+                        </div>
+                        <div class="tickrow">
+                            <div id="charmdlc" class="tick active"></div>
+                            <h2>DLC</h2>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

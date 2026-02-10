@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Rokkitt:wght@400;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    font-family: 'Rokkitt', serif; 
+    font-weight: 600;
+    background-color: #9c8327;
+}
+#outermenu{
+    margin-top: 50px;
+    width: 550px;
+    height:750px;
+    background-color: #bfb18d;
+    padding: 20px;
+    box-shadow: 3px 4px 5px 6px #00000009;
+    max-width: 90%;
+    z-index: 67;
+}
+
+#realmenu, #settingmenu{
+    width: 100%;
+    height: 100%;
+    background-color: #bfb18d;
+    border: 2px solid #726648;
+}
+
+#settingmenu{
+    display: none;
+    overflow-y: auto;
+}
+
+
+#settingmenu h2{
+    font-weight: 500;
+}
+
+.settext{
+    text-align: center;
+    width: 90%;
+    height: fit-content;
+    margin-bottom: 25px;
+}
+
+.tickcon{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.tickrow{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 48%;
+}
+
+.tickrow h2{
+    font-size: 18px;
+    margin: 0;
+    text-align: left;
+}
+
+.tick{
+    border: 2px #726648 solid;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background-color: #d4c5a0;
+    transition: background-color 0.2s;
+    flex-shrink: 0;
+}
+
+.tick.active{
+    background-color: #c05041;
+}
+
+.settitle{margin-bottom: 10px;}
+
+#bossinfo, #settingcontainer{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#bossinfo h1, #settingmenu h1{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    color: #726648;
+    width: 100%;
+    text-align: center;
+}
+
+#bosslogo{
+    width: 170px;
+    height: 170px;
+    background-color: #726648;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#bossinfo h2{
+    margin-top: 5px;
+    color: #726648;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+#loadoutinfo{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ltext{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#btncontainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    margin: 30px 0px;
+}
+
+#randombtn{
+    background-color: #c05041;
+    width: 150px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+    font-size: 18px;
+    transition: scale 0.2s;
+}
+
+#randombtn:hover{
+    scale: 1.02;
+}
+
+#supercon{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#loadoutinfo h2, #challengedesc{font-weight: 500;}
+
+#challengetitle{color:#726648}
+#challengecon{
+    margin-top: 50px;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    padding: 0px 30px;
+}
+
+#bosslogo img {
+    width: 110%;
+    height: 110%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.ltext .dots {
+    flex: 1;
+    margin: 0 8px;
+    background-image: radial-gradient(circle, #726648 0.8px, transparent 1px);
+    background-size: 6px 100%;
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    align-self: flex-end;
+    height: 2px;
+    margin-bottom: 4px;
+}
+
+#bgcontainer{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+#bg{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    width: 250%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: brightness(0.7);
+}
+
+#settingbtn{
+    position: fixed;
+    left: 30px;
+    top: 30px;
+    width: 70px;
+    height: 70px;
+    user-select: none;
+    cursor: pointer;
+    transition: scale 0.1s;
+
+}
+
+#settingbtn:hover{scale:1.05;}
+*{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media screen and (max-width: 500px){
+    #bossinfo h1{
+        font-size: 25px;
+    }
+
+    #loadoutinfo h2{
+        font-size: 24px;
+    }
+
+    .tickrow{width: 45%}
+}
+
+@media screen and (max-width: 750px){
+    #outermenu{
+        margin-top: 100px;
+    }
+}
