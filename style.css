@@ -179,8 +179,8 @@ body {
 }
 
 #bosslogo img {
-    width: 110%;
-    height: 110%;
+    width: 108%;
+    height: 108%;
     object-fit: cover;
     border-radius: 50%;
     display: block;
@@ -243,10 +243,12 @@ body {
     }
 
     #loadoutinfo h2{
-        font-size: 24px;
+        font-size: 22px;
     }
 
     .tickrow{width: 45%}
+    .ltext{width: 85%;}
+
 }
 
 @media screen and (max-width: 750px){

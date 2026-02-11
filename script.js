@@ -255,13 +255,39 @@ function opensetting(){
 
 function toggleTick(element, settingKey, value) {
     element.classList.toggle('active');
-    
+
     if (element.classList.contains('active')) {
         if (!settings[settingKey].includes(value)) {
             settings[settingKey].push(value);
         }
     } else {
         settings[settingKey] = settings[settingKey].filter(v => v !== value);
+
+        const allOptions = {
+            isles: [1, 2, 3, 4, 5],
+            bossTypes: ['G', 'A'],
+            challengeDifficulties: ['easy', 'medium', 'hard'],
+            weaponTypes: ['main', 'dlc'],
+            charmTypes: ['main', 'dlc']
+        };
+
+        const optionElementIds = {
+            isles: ['isle1', 'isle2', 'isle3', 'isle4', 'isle5'],
+            bossTypes: ['typeground', 'typeaerial'],
+            challengeDifficulties: ['diffeasy', 'diffmedium', 'diffhard'],
+            weaponTypes: ['weaponmain', 'weapondlc'],
+            charmTypes: ['charmmain', 'charmdlc']
+        };
+
+        if (Array.isArray(settings[settingKey]) && settings[settingKey].length === 0) {
+            settings[settingKey] = Array.isArray(allOptions[settingKey]) ? [...allOptions[settingKey]] : [];
+
+            const ids = optionElementIds[settingKey] || [];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && !el.classList.contains('active')) el.classList.add('active');
+            });
+        }
     }
 }
 
