@@ -95,14 +95,14 @@ function updateshotUI(isAir) {
     }
 }
 
-function getFilteredBosses() {
+function filterBosses() {
     return Object.keys(bosses).filter(key => {
         const boss = bosses[key];
         return settings.isles.includes(boss[2]) && settings.bossTypes.includes(boss[0]);
     });
 }
 
-function getFilteredweapons(isAir) {
+function filterweapons(isAir) {
     if (isAir) {
         let weapons = [];
         if (settings.weaponTypes.includes('main')) weapons.push(...mainAirweapons);
@@ -115,28 +115,38 @@ function getFilteredweapons(isAir) {
     }
 }
 
-function getFilteredcharms() {
+function filtercharms() {
     let filteredcharms = [];
     if (settings.charmTypes.includes('main')) filteredcharms.push(...maincharms);
     if (settings.charmTypes.includes('dlc')) filteredcharms.push(...dlccharms);
     return filteredcharms.length > 0 ? filteredcharms : maincharms;
 }
 
-function getFilteredchallenges() {
+function filterchallenges(isAir = false) {
     let challenges = [];
     if (settings.challengeDifficulties.includes('easy')) challenges.push(...easychallenges);
     if (settings.challengeDifficulties.includes('medium')) challenges.push(...mediumchallenges);
     if (settings.challengeDifficulties.includes('hard')) challenges.push(...hardchallenges);
-    return challenges.length > 0 ? challenges : [...easychallenges, ...mediumchallenges, ...hardchallenges];
+    
+    const defaultChallenges = [...easychallenges, ...mediumchallenges, ...hardchallenges];
+    challenges = challenges.length > 0 ? challenges : defaultChallenges;
+    
+    if (isAir) {
+        challenges = challenges.filter(c => c !== "No jumping" && c !== "No dashing" && c !== "Don't stay on the ground for more than 1 second"
+            && c !== "Use only shot 1"
+        );
+    }
+    
+    return challenges;
 }
 
 function randomise(){
     const sound = new Audio('parry.wav');
     sound.play();
 
-    const btn = document.getElementById("randombtn");
-    btn.style.pointerEvents = "none";
-    btn.style.opacity = "0.6";
+    const randombtn = document.getElementById("randombtn");
+    randombtn.style.pointerEvents = "none";
+    randombtn.style.opacity = "0.6";
     
     const animationDuration = 2000;
     let currentIteration = 0;
@@ -144,21 +154,14 @@ function randomise(){
     let finalshot1, finalshot2, finalsuper, finalMode, finalbosskey, finalboss, finalchallenge, finalcharm;
     
     
-    const filteredBossKeys = getFilteredBosses();
-    const filteredcharms = getFilteredcharms();
-    const filteredchallenges = getFilteredchallenges();
-    
-    if (filteredBossKeys.length === 0) {
-        alert("Please select at least one isle and one boss type!");
-        btn.style.pointerEvents = "auto";
-        btn.style.opacity = "1";
-        return;
-    }
-    
+    const filteredBossKeys = filterBosses();
+    const filteredcharms = filtercharms();
+
     finalbosskey = filteredBossKeys[Math.floor(Math.random() * filteredBossKeys.length)];
     finalboss = bosses[finalbosskey];
     
-    const filteredweapons = getFilteredweapons(finalboss[0] === 'A');
+    const filteredweapons = filterweapons(finalboss[0] === 'A');
+    const filteredchallenges = filterchallenges(finalboss[0] === 'A');
     
     if (finalboss[0] === 'A') {
         finalshot1 = filteredweapons[Math.floor(Math.random() * filteredweapons.length)];
@@ -184,7 +187,7 @@ function randomise(){
         let tempbosskey = filteredBossKeys[Math.floor(Math.random() * filteredBossKeys.length)];
         let tempboss = bosses[tempbosskey];
         
-        const tempweapons = getFilteredweapons(tempboss[0] === 'A');
+        const tempweapons = filterweapons(tempboss[0] === 'A');
         
         if (tempboss[0] === 'A') {
             tempshot1 = tempweapons[Math.floor(Math.random() * tempweapons.length)];
@@ -199,7 +202,8 @@ function randomise(){
         let tempcharm = filteredcharms[Math.floor(Math.random() * filteredcharms.length)];
         let tempsuper = supers[Math.floor(Math.random() * supers.length)];
         let tempMode = mode[Math.floor(Math.random() * mode.length)];
-        let tempchallenge = filteredchallenges[Math.floor(Math.random() * filteredchallenges.length)];
+        let tempfilteredchallenges = filterchallenges(tempboss[0] === 'A');
+        let tempchallenge = tempfilteredchallenges[Math.floor(Math.random() * tempfilteredchallenges.length)];
         
         let shot1Color = (tempboss[0] === 'A') ? airshots[tempshot1] : shots[tempshot1];
         let shot2Color = (tempboss[0] === 'A') ? "#000000" : (shots[tempshot2] || "#000000");
@@ -237,8 +241,8 @@ function randomise(){
             document.getElementById('challengedesc').textContent = finalchallenge;
             updateshotUI(finalboss[0] === 'A');
             
-            btn.style.pointerEvents = "auto";
-            btn.style.opacity = "1";
+            randombtn.style.pointerEvents = "auto";
+            randombtn.style.opacity = "1";
         }
     }, 50);
 }
@@ -293,6 +297,19 @@ function toggleTick(element, settingKey, value) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    const bgImg = document.getElementById('bg');
+    const loadingScreen = document.getElementById('loadingscreen');
+    
+    if (bgImg.complete) {
+        loadingScreen.classList.add('hidden');
+    } else {
+        bgImg.onload = () => {
+            loadingScreen.classList.add('hidden');
+        };
+        bgImg.onerror = () => {
+            loadingScreen.classList.add('hidden');
+        };
+    }
     
     document.getElementById('isle1').addEventListener('click', function() {
         toggleTick(this, 'isles', 1);

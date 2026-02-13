@@ -13,7 +13,7 @@ body {
     justify-content: center;
     font-family: 'Rokkitt', serif; 
     font-weight: 600;
-    background-color: #9c8327;
+    background-color: #5e8393;
 }
 #outermenu{
     margin-top: 50px;
@@ -228,14 +228,54 @@ body {
     user-select: none;
     cursor: pointer;
     transition: scale 0.1s;
-
 }
 
-#settingbtn:hover{scale:1.05;}
+#settingbtn:hover, #historybtn:hover{scale:1.05;}
 *{
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+#loadingscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5e8393;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 69420;
+    transition: opacity 0.3s ease;
+}
+
+#loadingscreen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #db9b3c;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#github{
+    left: 50%;
+    position: fixed;
+    transform: translateX(-50%);
+    bottom: 20px;
+}
+
 
 @media screen and (max-width: 500px){
     #bossinfo h1{
