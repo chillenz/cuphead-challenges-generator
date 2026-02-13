@@ -140,6 +140,17 @@ function filterchallenges(isAir = false) {
     return challenges;
 }
 
+function filternoshoot(challenge) {
+    if (challenge === "No shooting") {
+        return ["Coffee", "Divine Relic", "Whetstone"];
+    }
+    
+    let filteredcharms = [];
+    if (settings.charmTypes.includes('main')) filteredcharms.push(...maincharms);
+    if (settings.charmTypes.includes('dlc')) filteredcharms.push(...dlccharms);
+    return filteredcharms.length > 0 ? filteredcharms : maincharms;
+}
+
 function randomise(){
     const sound = new Audio('parry.wav');
     sound.play();
@@ -155,7 +166,6 @@ function randomise(){
     
     
     const filteredBossKeys = filterBosses();
-    const filteredcharms = filtercharms();
 
     finalbosskey = filteredBossKeys[Math.floor(Math.random() * filteredBossKeys.length)];
     finalboss = bosses[finalbosskey];
@@ -173,10 +183,12 @@ function randomise(){
         finalshot2 = secondweapons[Math.floor(Math.random() * secondweapons.length)];
     }
     
-    finalcharm = filteredcharms[Math.floor(Math.random() * filteredcharms.length)];
     finalsuper = supers[Math.floor(Math.random() * supers.length)];
     finalMode = mode[Math.floor(Math.random() * mode.length)];
     finalchallenge = filteredchallenges[Math.floor(Math.random() * filteredchallenges.length)];
+    
+    const filteredcharms = filternoshoot(finalchallenge);
+    finalcharm = filteredcharms[Math.floor(Math.random() * filteredcharms.length)];
 
     updateshotUI(finalboss[0] === 'A');
     
@@ -199,11 +211,13 @@ function randomise(){
             tempshot2 = secondweapons[Math.floor(Math.random() * secondweapons.length)];
         }
         
-        let tempcharm = filteredcharms[Math.floor(Math.random() * filteredcharms.length)];
         let tempsuper = supers[Math.floor(Math.random() * supers.length)];
         let tempMode = mode[Math.floor(Math.random() * mode.length)];
         let tempfilteredchallenges = filterchallenges(tempboss[0] === 'A');
         let tempchallenge = tempfilteredchallenges[Math.floor(Math.random() * tempfilteredchallenges.length)];
+        
+        let tempfilteredcharms = filternoshoot(tempchallenge);
+        let tempcharm = tempfilteredcharms[Math.floor(Math.random() * tempfilteredcharms.length)];
         
         let shot1Color = (tempboss[0] === 'A') ? airshots[tempshot1] : shots[tempshot1];
         let shot2Color = (tempboss[0] === 'A') ? "#000000" : (shots[tempshot2] || "#000000");
